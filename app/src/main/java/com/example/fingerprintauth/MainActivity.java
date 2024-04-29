@@ -1,15 +1,21 @@
 package com.example.fingerprintauth;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.biometric.BiometricManager;
 import androidx.biometric.BiometricPrompt;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import java.util.concurrent.Executor;
 
 public class MainActivity extends AppCompatActivity {
     BiometricPrompt biometricPrompt;
@@ -41,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         biometricPrompt=new BiometricPrompt(MainActivity.this,executor,new BiometricPrompt.AuthenticationCallback(){
-            @Override
+            
             public void onAuthenicationError(int errorCode,@NonNull CharSequence errString) {
                 super.onAuthenticationError(errorCode,errString);
             }
@@ -58,6 +64,6 @@ public class MainActivity extends AppCompatActivity {
             });
             promptInfo=new BiometricPrompt.PromptInfo.Builder().setTitle("Tech Projects")
             .setDescription("Use FingerPrint To Login").setDeviceCredentialAllowed(true).build();
-        biometricPrompt.authenticate(promptinfo);
+        biometricPrompt.authenticate(promptInfo);
         }
     }
